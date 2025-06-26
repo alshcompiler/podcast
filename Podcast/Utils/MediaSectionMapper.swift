@@ -1,0 +1,57 @@
+import Foundation
+
+struct MediaSectionMapper {
+    static func map(sections: [PodcastSection]) -> [MediaSectionType] {
+        sections.compactMap { section in
+            guard let type = section.type else {
+                assertionFailure("Type can't be nil")
+                return nil
+            }
+            guard let content = section.content else { return nil }
+            switch type.lowercased() {
+            case .square:
+                let items = content.map { $0.toMainMediaItem }
+                return .square(items)
+            case .twoLinesGrid:
+                let items = content.map { $0.toMainMediaItem }
+                return .twoLineGrid(items.chunked(2))
+            case .bigSquare, .big_Square: // difference in response key due to dummy data
+                let items = content.map { $0.toBigSquare }
+                return .bigSquare(items)
+            case .queue:
+                let items = content.map { $0.toMainMediaItem }
+                return .queue(items)
+            default:
+                return nil //handle search here
+            }
+        }
+    }
+}
+
+private extension String {
+    static let square = "square"
+    static let twoLinesGrid = "2_lines_grid"
+    static let big_Square = "big_square"
+    static let bigSquare = "big square"
+    static let queue = "queue"
+}
+
+private extension Podcast {
+    var toMainMediaItem: MediaItem {
+        .init(
+            title: name ?? "",
+            durationText: duration.map { "\($0) sec" }, // TODO: handle time
+            dateText: release_date,
+            imageURL: avatar_url ?? ""
+        )
+    }
+
+    var toBigSquare: MediaItem {
+        .init(
+            title: name ?? "",
+            durationText: nil,
+            dateText: nil,
+            imageURL: avatar_url ?? ""
+        )
+    }
+}
