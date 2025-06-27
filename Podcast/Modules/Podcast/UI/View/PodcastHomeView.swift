@@ -28,25 +28,7 @@ struct PodcastHomeView: View {
                         ForEach(viewModel.mediaSections) { section in
                             switch section {
                             case .square(let sectionName, let items):
-                                Section(header: Text(sectionName)) {
-                                    ForEach(items) { item in
-                                        LazyHStack {
-                                            AsyncImage(url: URL(string: item.imageURL)) { image in
-                                                image.resizable()
-                                            } placeholder: {
-                                                Color.gray
-                                            }
-                                            .frame(width: 50, height: 50)
-                                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                                            LazyVStack(alignment: .leading) {
-                                                Text(item.title)
-                                                    .font(.headline)
-                                                item.durationText.map { Text($0).font(.subheadline) }
-                                                item.dateText.map { Text($0).font(.caption) }
-                                            }
-                                        }
-                                    }
-                                }
+                                PodcastSquareSectionView(sectionName: sectionName, items: items)
                             case .twoLineGrid(let sectionName, let rows):
                                 Section(header: Text(sectionName)) {
                                     ForEach(rows.indices, id: \.self) { rowIndex in
