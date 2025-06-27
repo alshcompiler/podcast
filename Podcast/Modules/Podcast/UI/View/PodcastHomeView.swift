@@ -30,28 +30,7 @@ struct PodcastHomeView: View {
                             case .square(let sectionName, let items):
                                 PodcastSquareSectionView(sectionName: sectionName, items: items)
                             case .twoLineGrid(let sectionName, let rows):
-                                Section(header: Text(sectionName)) {
-                                    ForEach(rows.indices, id: \.self) { rowIndex in
-                                        LazyHStack {
-                                            ForEach(rows[rowIndex]) { item in
-                                                LazyVStack {
-                                                    AsyncImage(url: URL(string: item.imageURL)) { image in
-                                                        image.resizable()
-                                                    } placeholder: {
-                                                        Color.gray
-                                                    }
-                                                    .frame(width: 50, height: 50)
-                                                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                                                    Text(item.title)
-                                                        .font(.headline)
-                                                    item.durationText.map { Text($0).font(.subheadline) }
-                                                    item.dateText.map { Text($0).font(.caption) }
-                                                }
-                                                .frame(maxWidth: .infinity)
-                                            }
-                                        }
-                                    }
-                                }
+                                PodcastTwoLineGridView(sectionName: sectionName, rows: rows)
                             case .bigSquare(let sectionName, let items):
                                 Section(header: Text(sectionName)) {
                                     ForEach(items) { item in

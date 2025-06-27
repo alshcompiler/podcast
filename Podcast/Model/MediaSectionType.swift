@@ -9,7 +9,7 @@ enum MediaSectionType: Identifiable {
     var id: UUID { UUID() }
 }
 
-struct MediaItem: Identifiable {
+struct MediaItem: Identifiable, Hashable {
     let id = UUID()
     let title: String
     let durationText: String?
