@@ -6,7 +6,6 @@ struct PodcastHomeView: View {
     private enum Constants {
         static let screenTitle = "Podcasts"
         static let loadingText = "Loading..."
-        static let retryText = "Retry"
     }
 
     var body: some View {
@@ -15,14 +14,9 @@ struct PodcastHomeView: View {
                 if viewModel.isLoading {
                     ProgressView(Constants.loadingText)
                 } else if let error = viewModel.errorMessage {
-                    VStack {
-                        Text(error)
-                            .foregroundColor(.red)
-                        Button(Constants.retryText) {
-                            Task { await viewModel.fetchSections() }
-                        }
-                        .padding()
-                    }
+                    ErrorView(errorMessage: error, retryAction: {
+                        Task { await viewModel.fetchSections() }
+                    })
                 } else {
                     List {
                         ForEach(viewModel.mediaSections) { section in
