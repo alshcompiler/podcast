@@ -27,7 +27,7 @@ struct PodcastSquareSectionView: View {
 
                             // Title
                             Text(item.title)
-                                .font(.title2)
+                                .font(.headline)
                                 .fontWeight(.bold)
                                 .lineLimit(1)
                                 .foregroundColor(.white)
