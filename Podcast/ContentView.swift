@@ -8,19 +8,63 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTab = 4
+
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
+            // Settings
+            Color.black
+                .overlay(Text("Settings").foregroundColor(.white))
+                .tabItem {
+                    Image(systemName: "gearshape")
+                    Text("")
+                }
+                .tag(0)
+            // Library
+            Color.black
+                .overlay(Text("Library").foregroundColor(.white))
+                .tabItem {
+                    Image(systemName: "books.vertical")
+                    Text("")
+                }
+                .tag(1)
+            // People (with badge)
+            Color.black
+                .overlay(Text("People").foregroundColor(.white))
+                .tabItem {
+                    Image(systemName: "person.3")
+                    Text("")
+                }
+                .badge(3)
+                .tag(2)
+            // Search
+            Color.black
+                .overlay(Text("Search").foregroundColor(.white))
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                    Text("")
+                }
+                .tag(3)
+            // Home
             PodcastHomeView()
                 .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
+                    Image(systemName: "house.fill")
+                    Text("")
                 }
-            FavoritesView()
-                .tabItem {
-                    Image(systemName: "star")
-                    Text("Favorites")
-                }
+                .tag(4)
         }
+        .accentColor(.white)
+        .background(Color.black.ignoresSafeArea())
+        .onAppear {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .black
+            UITabBar.appearance().standardAppearance = appearance
+            if #available(iOS 15.0, *) {
+                UITabBar.appearance().scrollEdgeAppearance = appearance
+            }
+        }
+        .preferredColorScheme(.dark)
     }
 }
 

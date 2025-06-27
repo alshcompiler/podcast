@@ -8,24 +8,24 @@ struct MediaSectionMapper {
                 return nil
             }
 
-            guard let contentType = section.content_type else {
-                assertionFailure("content type can't be nil")
+            guard let sectionName = section.name else {
+                assertionFailure("name type can't be nil")
                 return nil
             }
             guard let content = section.content else { return nil }
             switch type.lowercased() {
             case .square:
                 let items = content.map { $0.toMainMediaItem }
-                return .square(contentType.cleaned, items)
+                return .square(sectionName, items)
             case .twoLinesGrid:
                 let items = content.map { $0.toMainMediaItem }
-                return .twoLineGrid(contentType.cleaned, items.chunked(2))
+                return .twoLineGrid(sectionName, items.chunked(2))
             case .bigSquare, .big_Square: // difference in response key due to dummy data
                 let items = content.map { $0.toBigSquare }
-                return .bigSquare(contentType.cleaned, items)
+                return .bigSquare(sectionName, items)
             case .queue:
                 let items = content.map { $0.toMainMediaItem }
-                return .queue(contentType.cleaned, items)
+                return .queue(sectionName, items)
             default:
                 return nil //handle search here
             }

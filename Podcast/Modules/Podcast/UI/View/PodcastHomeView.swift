@@ -2,17 +2,23 @@ import SwiftUI
 
 struct PodcastHomeView: View {
     @StateObject private var viewModel = PodcastHomeViewModel()
-    
+
+    private enum Constants {
+        static let screenTitle = "Podcasts"
+        static let loadingText = "Loading..."
+        static let retryText = "Retry"
+    }
+
     var body: some View {
         NavigationView {
             Group {
                 if viewModel.isLoading {
-                    ProgressView("Loading...")
+                    ProgressView(Constants.loadingText)
                 } else if let error = viewModel.errorMessage {
                     VStack {
-                        Text("Error: \(error)")
+                        Text(error)
                             .foregroundColor(.red)
-                        Button("Retry") {
+                        Button(Constants.retryText) {
                             Task { await viewModel.fetchSections() }
                         }
                         .padding()
@@ -108,7 +114,7 @@ struct PodcastHomeView: View {
                     .listStyle(InsetGroupedListStyle())
                 }
             }
-            .navigationTitle("Podcasts")
+            .navigationTitle(Constants.screenTitle)
         }
         .task {
             await viewModel.fetchSections()
@@ -118,4 +124,4 @@ struct PodcastHomeView: View {
 
 #Preview {
     PodcastHomeView()
-} 
+}

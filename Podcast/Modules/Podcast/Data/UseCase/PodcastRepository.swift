@@ -5,9 +5,9 @@ protocol PodcastRepositoryProtocol {
 }
 
 class PodcastRepository: PodcastRepositoryProtocol {
-    private let apiService: APIServiceProtocol
+    private let apiService: PodcastServiceProtocol
 
-    init(apiService: APIServiceProtocol = APIService()) {
+    init(apiService: PodcastServiceProtocol = PodcastService()) {
         self.apiService = apiService
     }
 
