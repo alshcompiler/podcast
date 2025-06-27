@@ -2,7 +2,7 @@ import SwiftUI
 
 struct PodcastSquareSectionView: View {
     let sectionName: String
-    let items: [MediaItem]
+    let items: MediaItems
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {

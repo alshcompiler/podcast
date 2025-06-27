@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PodcastTwoLineGridItem: View {
-    let items: [MediaItem] // Up to 2 items
+    let items: MediaItems // Up to 2 items
 
     var body: some View {
         let cellWidth = UIScreen.main.bounds.width * 0.8

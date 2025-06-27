@@ -30,25 +30,9 @@ struct PodcastHomeView: View {
                             case .square(let sectionName, let items):
                                 PodcastSquareSectionView(sectionName: sectionName, items: items)
                             case .twoLineGrid(let sectionName, let rows):
-                                PodcastTwoLineGridView(sectionName: sectionName, rows: rows)
+                                PodcastTwoLineGridSectionView(sectionName: sectionName, rows: rows)
                             case .bigSquare(let sectionName, let items):
-                                Section(header: Text(sectionName)) {
-                                    ForEach(items) { item in
-                                        LazyHStack {
-                                            AsyncImage(url: URL(string: item.imageURL)) { image in
-                                                image.resizable()
-                                            } placeholder: {
-                                                Color.gray
-                                            }
-                                            .frame(width: 70, height: 70)
-                                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                                            LazyVStack(alignment: .leading) {
-                                                Text(item.title)
-                                                    .font(.headline)
-                                            }
-                                        }
-                                    }
-                                }
+                                PodcastBigSquareSectionView(sectionName: sectionName, items: items)
                             case .queue(let sectionName, let items):
                                 Section(header: Text(sectionName)) {
                                     ForEach(items) { item in

@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct PodcastTwoLineGridView: View {
+struct PodcastTwoLineGridSectionView: View {
     let sectionName: String
-    let rows: [[MediaItem]]
+    let rows: [MediaItems]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
