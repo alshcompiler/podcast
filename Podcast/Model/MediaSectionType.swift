@@ -1,10 +1,10 @@
 import Foundation
 typealias MediaItems = [MediaItem]
 enum MediaSectionType: Identifiable {
-    case square(MediaItems)
-    case twoLineGrid([MediaItems])
-    case bigSquare(MediaItems)
-    case queue(MediaItems)
+    case square(String, MediaItems)
+    case twoLineGrid(String, [MediaItems])
+    case bigSquare(String, MediaItems)
+    case queue(String, MediaItems)
 
     var id: UUID { UUID() }
 }

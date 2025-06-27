@@ -7,20 +7,25 @@ struct MediaSectionMapper {
                 assertionFailure("Type can't be nil")
                 return nil
             }
+
+            guard let contentType = section.content_type else {
+                assertionFailure("content type can't be nil")
+                return nil
+            }
             guard let content = section.content else { return nil }
             switch type.lowercased() {
             case .square:
                 let items = content.map { $0.toMainMediaItem }
-                return .square(items)
+                return .square(contentType.cleaned, items)
             case .twoLinesGrid:
                 let items = content.map { $0.toMainMediaItem }
-                return .twoLineGrid(items.chunked(2))
+                return .twoLineGrid(contentType.cleaned, items.chunked(2))
             case .bigSquare, .big_Square: // difference in response key due to dummy data
                 let items = content.map { $0.toBigSquare }
-                return .bigSquare(items)
+                return .bigSquare(contentType.cleaned, items)
             case .queue:
                 let items = content.map { $0.toMainMediaItem }
-                return .queue(items)
+                return .queue(contentType.cleaned, items)
             default:
                 return nil //handle search here
             }
@@ -40,8 +45,8 @@ private extension Podcast {
     var toMainMediaItem: MediaItem {
         .init(
             title: name ?? "",
-            durationText: duration.map { "\($0) sec" }, // TODO: handle time
-            dateText: release_date,
+            durationText: duration?.durationText ?? "",
+            dateText: release_date?.relativeTime ?? release_date ?? "",
             imageURL: avatar_url ?? ""
         )
     }

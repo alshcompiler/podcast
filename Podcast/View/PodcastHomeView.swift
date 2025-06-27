@@ -21,10 +21,10 @@ struct PodcastHomeView: View {
                     List {
                         ForEach(viewModel.mediaSections) { section in
                             switch section {
-                            case .square(let items):
-                                Section(header: Text("Square")) {
+                            case .square(let sectionName, let items):
+                                Section(header: Text(sectionName)) {
                                     ForEach(items) { item in
-                                        HStack {
+                                        LazyHStack {
                                             AsyncImage(url: URL(string: item.imageURL)) { image in
                                                 image.resizable()
                                             } placeholder: {
@@ -32,7 +32,7 @@ struct PodcastHomeView: View {
                                             }
                                             .frame(width: 50, height: 50)
                                             .clipShape(RoundedRectangle(cornerRadius: 8))
-                                            VStack(alignment: .leading) {
+                                            LazyVStack(alignment: .leading) {
                                                 Text(item.title)
                                                     .font(.headline)
                                                 item.durationText.map { Text($0).font(.subheadline) }
@@ -41,12 +41,12 @@ struct PodcastHomeView: View {
                                         }
                                     }
                                 }
-                            case .twoLineGrid(let rows):
-                                Section(header: Text("2 Line Grid")) {
-                                    ForEach(rows.indices, id: \ .self) { rowIndex in
-                                        HStack {
+                            case .twoLineGrid(let sectionName, let rows):
+                                Section(header: Text(sectionName)) {
+                                    ForEach(rows.indices, id: \.self) { rowIndex in
+                                        LazyHStack {
                                             ForEach(rows[rowIndex]) { item in
-                                                VStack {
+                                                LazyVStack {
                                                     AsyncImage(url: URL(string: item.imageURL)) { image in
                                                         image.resizable()
                                                     } placeholder: {
@@ -64,10 +64,10 @@ struct PodcastHomeView: View {
                                         }
                                     }
                                 }
-                            case .bigSquare(let items):
-                                Section(header: Text("Big Square")) {
+                            case .bigSquare(let sectionName, let items):
+                                Section(header: Text(sectionName)) {
                                     ForEach(items) { item in
-                                        HStack {
+                                        LazyHStack {
                                             AsyncImage(url: URL(string: item.imageURL)) { image in
                                                 image.resizable()
                                             } placeholder: {
@@ -75,17 +75,17 @@ struct PodcastHomeView: View {
                                             }
                                             .frame(width: 70, height: 70)
                                             .clipShape(RoundedRectangle(cornerRadius: 12))
-                                            VStack(alignment: .leading) {
+                                            LazyVStack(alignment: .leading) {
                                                 Text(item.title)
                                                     .font(.headline)
                                             }
                                         }
                                     }
                                 }
-                            case .queue(let items):
-                                Section(header: Text("Queue")) {
+                            case .queue(let sectionName, let items):
+                                Section(header: Text(sectionName)) {
                                     ForEach(items) { item in
-                                        HStack {
+                                        LazyHStack {
                                             AsyncImage(url: URL(string: item.imageURL)) { image in
                                                 image.resizable()
                                             } placeholder: {
@@ -93,7 +93,7 @@ struct PodcastHomeView: View {
                                             }
                                             .frame(width: 50, height: 50)
                                             .clipShape(RoundedRectangle(cornerRadius: 8))
-                                            VStack(alignment: .leading) {
+                                            LazyVStack(alignment: .leading) {
                                                 Text(item.title)
                                                     .font(.headline)
                                                 item.durationText.map { Text($0).font(.subheadline) }

@@ -1,0 +1,22 @@
+import Foundation
+
+extension String {
+    private static let isoFormatter = ISO8601DateFormatter()
+    private static let relativeFormatter: RelativeDateTimeFormatter = {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        return formatter
+    }()
+    
+    var cleaned: String {
+        self.components(separatedBy: CharacterSet.alphanumerics.inverted)
+            .filter { !$0.isEmpty }
+            .joined(separator: " ")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    var relativeTime: String {
+        guard let date = Self.isoFormatter.date(from: self) else { return "" }
+        return Self.relativeFormatter.localizedString(for: date, relativeTo: Date())
+    }
+} 
