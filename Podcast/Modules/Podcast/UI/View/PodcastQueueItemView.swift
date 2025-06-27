@@ -5,12 +5,26 @@ struct PodcastQueueItemView: View {
     let title: String
     let duration: String
     let date: String
+    
+    private enum Constants {
+        static let cornerRadius: CGFloat = 32.0
+        static let imageSize: CGFloat = 120.0
+        static let imageCornerRadius: CGFloat = 24.0
+        static let playButtonSize: CGFloat = 36.0
+        static let cardHeight: CGFloat = 140.0
+        static let cardWidthMultiplier: CGFloat = 0.8
+        static let horizontalSpacing: CGFloat = 8.0
+        static let verticalSpacing: CGFloat = 8.0
+        static let horizontalPadding: CGFloat = 8.0
+        static let verticalPadding: CGFloat = 10.0
+        static let trailingPadding: CGFloat = 4.0
+    }
 
     var body: some View {
-        RoundedRectangle(cornerRadius: 32, style: .continuous)
+        RoundedRectangle(cornerRadius: Constants.cornerRadius, style: .continuous)
             .fill(Color(red: 28/255, green: 29/255, blue: 38/255)) // dark background
             .overlay(
-                HStack(spacing: 8) {
+                HStack(spacing: Constants.horizontalSpacing) {
                     // Podcast image
                     AsyncImage(url: URL(string: imageURL)) { image in
                         image
@@ -19,11 +33,11 @@ struct PodcastQueueItemView: View {
                     } placeholder: {
                         Color.gray
                     }
-                    .frame(width: 120, height: 120)
-                    .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+                    .frame(width: Constants.imageSize, height: Constants.imageSize)
+                    .clipShape(RoundedRectangle(cornerRadius: Constants.imageCornerRadius, style: .continuous))
 
                     // Info
-                    VStack(alignment: .leading, spacing: 8) {
+                    VStack(alignment: .leading, spacing: Constants.verticalSpacing) {
                         Text(title)
                             .font(.title2)
                             .fontWeight(.bold)
@@ -32,7 +46,7 @@ struct PodcastQueueItemView: View {
                             .lineLimit(2)
                             .frame(maxWidth: .infinity, alignment: .leading)
 
-                        HStack(spacing: 8) {
+                        HStack(spacing: Constants.horizontalSpacing) {
                             Text(duration)
                                 .font(.body)
                                 .foregroundColor(.red)
@@ -42,7 +56,7 @@ struct PodcastQueueItemView: View {
                         }
                         .frame(alignment: .leading)
                     }
-                    .padding(.vertical, 8)
+                    .padding(.vertical, Constants.verticalSpacing)
 
                     Spacer()
 
@@ -52,18 +66,18 @@ struct PodcastQueueItemView: View {
                         Button(action: {}) {
                             Image(systemName: "play.fill")
                                 .foregroundColor(.black)
-                                .frame(width: 36, height: 36)
+                                .frame(width: Constants.playButtonSize, height: Constants.playButtonSize)
                                 .background(Color.white)
                                 .clipShape(Circle())
                         }
-                        .padding(.trailing, 4)
-                        .padding(.vertical, 8)
+                        .padding(.trailing, Constants.trailingPadding)
+                        .padding(.vertical, Constants.verticalSpacing)
                     }
                 }
-                .padding(.horizontal, 8)
-                .padding(.vertical, 10)
+                .padding(.horizontal, Constants.horizontalPadding)
+                .padding(.vertical, Constants.verticalPadding)
             )
-            .frame(width: UIScreen.main.bounds.width * 0.8, height: 140)
+            .frame(width: UIScreen.main.bounds.width * Constants.cardWidthMultiplier, height: Constants.cardHeight)
     }
 } 
 

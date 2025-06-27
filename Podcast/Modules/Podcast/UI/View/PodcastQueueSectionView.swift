@@ -25,4 +25,25 @@ struct PodcastQueueSectionView: View {
             }
         }
     }
+}
+
+#Preview {
+    PodcastQueueSectionView(
+        sectionName: "Your Queue",
+        items: [
+            MediaItem(
+                title: "The Future of AI and Machine Learning",
+                durationText: "45:30",
+                dateText: "2 hours ago",
+                imageURL: "https://example.com/podcast1.jpg"
+            ),
+            MediaItem(
+                title: "Technology Trends 2024",
+                durationText: "32:15",
+                dateText: "1 day ago",
+                imageURL: "https://example.com/podcast2.jpg"
+            )
+        ]
+    )
+    .background(Color.black)
 } 

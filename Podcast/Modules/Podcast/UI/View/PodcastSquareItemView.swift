@@ -7,10 +7,12 @@ struct PodcastSquareItemView: View {
     let date: String?
 
     private enum Constants {
-        static let imageDimention: CGFloat = 140.0
+        static let imageDimension: CGFloat = 140.0
         static let imageRadius: CGFloat = 24.0
         static let itemWidth: CGFloat = 160.0
         static let verticalSpacing: CGFloat = 8.0
+        static let horizontalPadding: CGFloat = 10.0
+        static let verticalPadding: CGFloat = 4.0
     }
 
     var body: some View {
@@ -23,7 +25,7 @@ struct PodcastSquareItemView: View {
             } placeholder: {
                 Color.gray
             }
-            .frame(width: Constants.imageDimention, height: Constants.imageDimention)
+            .frame(width: Constants.imageDimension, height: Constants.imageDimension)
             .clipShape(RoundedRectangle(cornerRadius: Constants.imageRadius, style: .continuous))
             
             Text(title)
@@ -31,7 +33,7 @@ struct PodcastSquareItemView: View {
                 .fontWeight(.bold)
                 .lineLimit(1)
                 .foregroundColor(.white)
-                .frame(maxWidth: Constants.imageDimention)
+                .frame(maxWidth: Constants.imageDimension)
 
             // Bottom row: duration and date
             HStack {
@@ -39,8 +41,8 @@ struct PodcastSquareItemView: View {
                     Label(duration, systemImage: "play.fill")
                         .font(.caption)
                         .foregroundColor(.white)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 4)
+                        .padding(.horizontal, Constants.horizontalPadding)
+                        .padding(.vertical, Constants.verticalPadding)
                         .background(Color(.systemGray4).opacity(0.7))
                         .clipShape(Capsule())
                 }
@@ -51,10 +53,9 @@ struct PodcastSquareItemView: View {
                         .foregroundColor(.white.opacity(0.7))
                 }
             }
-            .frame(maxWidth: Constants.imageDimention)
+            .frame(maxWidth: Constants.imageDimension)
         }
         .frame(width: Constants.itemWidth, alignment: .leading)
-        .padding(.horizontal, 0)
     }
 }
 
