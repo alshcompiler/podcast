@@ -5,9 +5,9 @@ struct PodcastQueueSectionView: View {
     let items: [MediaItem]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 16) {
             Text(sectionName)
-                .font(.headline)
+                .font(.title2)
                 .foregroundColor(.white)
                 .padding(.horizontal)
             ScrollView(.horizontal, showsIndicators: false) {

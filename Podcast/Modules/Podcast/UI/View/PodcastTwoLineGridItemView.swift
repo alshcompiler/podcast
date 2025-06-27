@@ -1,11 +1,11 @@
 import SwiftUI
 
-struct PodcastTwoLineGridItem: View {
+struct PodcastTwoLineGridItemView: View {
     let items: MediaItems // Up to 2 items
 
     var body: some View {
         let cellWidth = UIScreen.main.bounds.width * 0.8
-        LazyVStack(spacing: 16) {
+        VStack(spacing: 16) {
             ForEach(items) { item in
                 HStack(spacing: 12) {
                     // Podcast image

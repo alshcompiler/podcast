@@ -5,15 +5,15 @@ struct PodcastTwoLineGridSectionView: View {
     let rows: [MediaItems]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 16) {
             Text(sectionName)
-                .font(.headline)
+                .font(.title2)
                 .foregroundColor(.white)
                 .padding(.horizontal)
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 20) {
                     ForEach(rows, id: \ .self) { columnItems in
-                        PodcastTwoLineGridItem(items: columnItems)
+                        PodcastTwoLineGridItemView(items: columnItems)
                     }
                 }
                 .padding(.horizontal)

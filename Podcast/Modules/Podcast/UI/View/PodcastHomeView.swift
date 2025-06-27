@@ -31,8 +31,11 @@ struct PodcastHomeView: View {
                                 PodcastQueueSectionView(sectionName: sectionName, items: items)
                             }
                         }
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
+                        .padding(.bottom, 24) // Space between sections
                     }
-                    .listStyle(InsetGroupedListStyle())
+                    .listStyle(PlainListStyle())
                 }
             }
             .navigationTitle(Constants.screenTitle)
