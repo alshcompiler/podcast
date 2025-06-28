@@ -125,4 +125,4 @@ struct Podcast: Codable, Identifiable {
 struct PaginationInfo: Codable {
     let next_page: String?
     let total_pages: Int
-}
+} 

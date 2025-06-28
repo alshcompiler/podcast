@@ -1,5 +1,7 @@
 import Foundation
+
 typealias MediaItems = [MediaItem]
+
 enum MediaSectionType: Identifiable, Hashable {
     case square(String, MediaItems)
     case twoLineGrid(String, [MediaItems])
