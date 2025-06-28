@@ -12,7 +12,6 @@ struct PodcastTwoLineGridItemView: View {
         static let contentSpacing: CGFloat = 8.0
         static let horizontalPadding: CGFloat = 10.0
         static let verticalPadding: CGFloat = 4.0
-        static let itemPadding: CGFloat = 16.0
         static let itemCornerRadius: CGFloat = 16.0
         static let iconSize: CGFloat = 18.0
         static let iconSpacing: CGFloat = 12.0
@@ -67,7 +66,6 @@ struct PodcastTwoLineGridItemView: View {
                         .frame(height: Constants.imageSize)
                         Spacer()
                     }
-                    .padding(.horizontal, Constants.itemPadding)
                     .background(Color(.systemGray6).opacity(0.15))
                     .cornerRadius(Constants.itemCornerRadius)
 
