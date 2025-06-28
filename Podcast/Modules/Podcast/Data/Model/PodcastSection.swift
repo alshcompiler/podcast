@@ -31,6 +31,23 @@ struct PodcastSection: Codable, Identifiable {
         }
         content = try container.decodeIfPresent([Podcast].self, forKey: .content)
     }
+
+    // Memberwise initializer for PodcastSection
+    init(
+        name: String?,
+        type: String?,
+        content_type: String?,
+        order: Int?,
+        rawOrder: String?,
+        content: [Podcast]?
+    ) {
+        self.name = name
+        self.type = type
+        self.content_type = content_type
+        self.order = order
+        self.rawOrder = rawOrder
+        self.content = content
+    }
 }
 
 struct Podcast: Codable, Identifiable {
@@ -119,6 +136,43 @@ struct Podcast: Codable, Identifiable {
         }
         language = try container.decodeIfPresent(String.self, forKey: .language)
         release_date = try container.decodeIfPresent(String.self, forKey: .release_date)
+    }
+
+    // Memberwise initializer for Podcast
+    init(
+        podcast_id: String?,
+        name: String?,
+        description: String?,
+        avatar_url: String?,
+        episode_count: Int?,
+        rawEpisodeCount: String?,
+        duration: Int?,
+        rawDuration: String?,
+        language: String?,
+        priority: Int?,
+        rawPriority: String?,
+        popularityScore: Int?,
+        rawPopularityScore: String?,
+        score: Double?,
+        rawScore: String?,
+        release_date: String?
+    ) {
+        self.podcast_id = podcast_id
+        self.name = name
+        self.description = description
+        self.avatar_url = avatar_url
+        self.episode_count = episode_count
+        self.rawEpisodeCount = rawEpisodeCount
+        self.duration = duration
+        self.rawDuration = rawDuration
+        self.language = language
+        self.priority = priority
+        self.rawPriority = rawPriority
+        self.popularityScore = popularityScore
+        self.rawPopularityScore = rawPopularityScore
+        self.score = score
+        self.rawScore = rawScore
+        self.release_date = release_date
     }
 }
 

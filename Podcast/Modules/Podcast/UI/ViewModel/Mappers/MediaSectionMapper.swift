@@ -2,14 +2,17 @@ import Foundation
 
 struct MediaSectionMapper {
     static func map(sections: [PodcastSection]) -> [MediaSectionType] {
-        sections.compactMap { section in
+        let sortedSections = sections.sorted { (lhs, rhs) in
+            (lhs.order ?? Int.max) < (rhs.order ?? Int.max)
+        }
+        return sortedSections.compactMap { section in
             guard let type = section.type else {
-                assertionFailure("Type can't be nil")
+                testableAssertionFailure("Type can't be nil")
                 return nil
             }
 
             guard let sectionName = section.name else {
-                assertionFailure("name type can't be nil")
+                testableAssertionFailure("name type can't be nil")
                 return nil
             }
             guard let content = section.content else { return nil }
