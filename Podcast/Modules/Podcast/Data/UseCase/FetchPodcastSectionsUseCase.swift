@@ -14,4 +14,8 @@ class FetchPodcastSectionsUseCase {
     func executeWithPagination(page: Int?) async throws -> (sections: [PodcastSection], pagination: PaginationInfo) {
         try await repository.getPodcastSectionsWithPagination(page: page)
     }
+
+    func executeSearch(query: String) async throws -> [PodcastSection] {
+        try await repository.getPodcastSearchSections(query: query)
+    }
 } 

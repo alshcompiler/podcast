@@ -27,7 +27,8 @@ struct MediaSectionMapper {
                 let items = content.map { $0.toMainMediaItem }
                 return .queue(sectionName, items)
             default:
-                return nil //handle search here
+                let items = content.map { $0.toMainMediaItem }
+                return .square(sectionName, items) //handle search here
             }
         }
     }

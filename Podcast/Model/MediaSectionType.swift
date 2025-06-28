@@ -8,13 +8,13 @@ enum MediaSectionType: Identifiable, Hashable {
 
     var id: UUID {
         switch self {
-        case .square(let string, let mediaItems):
+        case .square(_, let mediaItems):
             mediaItems.first?.id ?? UUID()
-        case .twoLineGrid(let string, let array):
+        case .twoLineGrid(_, let array):
             array.first?.first?.id ?? UUID()
-        case .bigSquare(let string, let mediaItems):
+        case .bigSquare(_, let mediaItems):
             mediaItems.first?.id ?? UUID()
-        case .queue(let string, let mediaItems):
+        case .queue(_, let mediaItems):
             mediaItems.first?.id ?? UUID()
         }
     }

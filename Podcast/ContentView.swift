@@ -38,8 +38,7 @@ struct ContentView: View {
                 .badge(3)
                 .tag(2)
             // Search
-            Color.black
-                .overlay(Text("Search").foregroundColor(.white))
+            PodcastSearchView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("")

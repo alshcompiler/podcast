@@ -9,10 +9,11 @@ protocol APIEndpointProtocol {
 
 enum PodcastAPIEndpoint: APIEndpointProtocol {
     case getPodcastSections(page: Int?)
+    case searchPodcastSections(query: String)
     
     var method: HTTPMethod {
         switch self {
-        case .getPodcastSections:
+        case .getPodcastSections, .searchPodcastSections:
             return .GET
         }
     }
@@ -26,12 +27,15 @@ enum PodcastAPIEndpoint: APIEndpointProtocol {
                 urlString += "?page=\(page)"
             }
             return URL(string: urlString)!
+        case .searchPodcastSections(let query):
+            let urlString = "https://mock.apidog.com/m1/735111-711675-default/search?q=\(query)"
+            return URL(string: urlString)!
         }
     }
     
     var parameters: [String: Any]? {
         switch self {
-        case .getPodcastSections:
+        case .getPodcastSections, .searchPodcastSections:
             return nil
         }
     }
