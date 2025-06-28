@@ -3,12 +3,12 @@ import Foundation
 @MainActor
 class PodcastHomeViewModel: ObservableObject {
     @Published private(set) var mediaSections: [MediaSectionType] = []
-    @Published var isLoading = false
-    @Published var isLoadingMore = false
-    @Published var errorMessage: String?
-    @Published var currentPage = 0
-    @Published var totalPages = 1
-    @Published var hasMorePages = true
+    @Published private(set) var isLoading = false
+    @Published private var isLoadingMore = false
+    @Published private(set) var errorMessage: String?
+    @Published private var currentPage = 0
+    @Published private var totalPages = 1
+    @Published private var hasMorePages = true
 
     private let fetchPodcastSectionsUseCase: FetchPodcastSectionsUseCase
     
@@ -31,7 +31,7 @@ class PodcastHomeViewModel: ObservableObject {
         isLoading = false
     }
     
-    func loadMoreSections() async {
+    private func loadMoreSections() async {
         guard hasMorePages && !isLoadingMore else { return }
         
         isLoadingMore = true

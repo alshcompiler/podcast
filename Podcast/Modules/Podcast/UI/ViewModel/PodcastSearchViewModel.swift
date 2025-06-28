@@ -3,9 +3,10 @@ import Combine
 
 @MainActor
 class PodcastSearchViewModel: ObservableObject {
+    // added private(set) for read only
     @Published private(set) var mediaSections: [MediaSectionType] = []
-    @Published var isLoading = false
-    @Published var errorMessage: String?
+    @Published private(set) var isLoading = false
+    @Published private(set) var errorMessage: String?
     @Published var searchText: String = ""
 
     private let fetchPodcastSectionsUseCase: FetchPodcastSectionsUseCase
