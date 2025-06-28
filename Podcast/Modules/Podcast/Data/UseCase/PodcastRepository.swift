@@ -2,6 +2,7 @@ import Foundation
 
 protocol PodcastRepositoryProtocol {
     func getPodcastSections() async throws -> [PodcastSection]
+    func getPodcastSectionsWithPagination(page: Int?) async throws -> (sections: [PodcastSection], pagination: PaginationInfo)
 }
 
 class PodcastRepository: PodcastRepositoryProtocol {
@@ -13,5 +14,9 @@ class PodcastRepository: PodcastRepositoryProtocol {
 
     func getPodcastSections() async throws -> [PodcastSection] {
         try await apiService.fetchPodcastSections()
+    }
+    
+    func getPodcastSectionsWithPagination(page: Int?) async throws -> (sections: [PodcastSection], pagination: PaginationInfo) {
+        try await apiService.fetchPodcastSectionsWithPagination(page: page)
     }
 } 

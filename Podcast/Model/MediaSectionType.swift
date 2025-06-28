@@ -1,12 +1,23 @@
 import Foundation
 typealias MediaItems = [MediaItem]
-enum MediaSectionType: Identifiable {
+enum MediaSectionType: Identifiable, Hashable {
     case square(String, MediaItems)
     case twoLineGrid(String, [MediaItems])
     case bigSquare(String, MediaItems)
     case queue(String, MediaItems)
 
-    var id: UUID { UUID() }
+    var id: UUID {
+        switch self {
+        case .square(let string, let mediaItems):
+            mediaItems.first?.id ?? UUID()
+        case .twoLineGrid(let string, let array):
+            array.first?.first?.id ?? UUID()
+        case .bigSquare(let string, let mediaItems):
+            mediaItems.first?.id ?? UUID()
+        case .queue(let string, let mediaItems):
+            mediaItems.first?.id ?? UUID()
+        }
+    }
 }
 
 struct MediaItem: Identifiable, Hashable {

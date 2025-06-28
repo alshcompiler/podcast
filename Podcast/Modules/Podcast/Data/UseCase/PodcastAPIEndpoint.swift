@@ -8,7 +8,7 @@ protocol APIEndpointProtocol {
 }
 
 enum PodcastAPIEndpoint: APIEndpointProtocol {
-    case getPodcastSections
+    case getPodcastSections(page: Int?)
     
     var method: HTTPMethod {
         switch self {
@@ -20,8 +20,12 @@ enum PodcastAPIEndpoint: APIEndpointProtocol {
     var url: URL {
         let baseURL = "https://api-v2-b2sit6oh3a-uc.a.run.app"
         switch self {
-        case .getPodcastSections:
-            return URL(string: "\(baseURL)/home_sections")!
+        case .getPodcastSections(let page):
+            var urlString = "\(baseURL)/home_sections"
+            if let page = page {
+                urlString += "?page=\(page)"
+            }
+            return URL(string: urlString)!
         }
     }
     

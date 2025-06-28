@@ -23,3 +23,8 @@ struct Podcast: Codable, Identifiable {
     let score: Double?
     let release_date: String?
 }
+
+struct PaginationInfo: Codable {
+    let next_page: String?
+    let total_pages: Int
+}
