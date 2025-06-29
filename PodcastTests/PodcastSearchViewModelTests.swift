@@ -15,7 +15,7 @@ struct PodcastSearchViewModelTests {
         mockUseCase.searchResult = [.mockSquare]
         let viewModel = PodcastSearchViewModel(fetchPodcastSectionsUseCase: mockUseCase)
         viewModel.performSearch(query: "test")
-        try? await Task.sleep(nanoseconds: 200_000_000)
+        try? await Task.sleep(nanoseconds: 50_000_000)
         #expect(viewModel.mediaSections.count == 1)
         #expect(viewModel.isLoading == false)
         #expect(viewModel.errorMessage == nil)
@@ -28,7 +28,7 @@ struct PodcastSearchViewModelTests {
         mockUseCase.error = DummyError()
         let viewModel = PodcastSearchViewModel(fetchPodcastSectionsUseCase: mockUseCase)
         viewModel.performSearch(query: "fail")
-        try? await Task.sleep(nanoseconds: 200_000_000)
+        try? await Task.sleep(nanoseconds: 50_000_000)
         #expect(viewModel.mediaSections.isEmpty)
         #expect(viewModel.isLoading == false)
         #expect(viewModel.errorMessage != nil)
