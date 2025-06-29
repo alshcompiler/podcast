@@ -16,7 +16,7 @@ class PodcastSearchViewModel: ObservableObject {
         self.fetchPodcastSectionsUseCase = fetchPodcastSectionsUseCase
 
         $searchText
-            .debounce(for: .milliseconds(400), scheduler: RunLoop.main)
+            .debounce(for: .milliseconds(200), scheduler: RunLoop.main)
             .removeDuplicates()
             .sink { [weak self] text in
                 self?.performSearch(query: text)
