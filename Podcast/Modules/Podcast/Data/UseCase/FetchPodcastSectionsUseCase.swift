@@ -1,6 +1,12 @@
 import Foundation
 
-class FetchPodcastSectionsUseCase {
+protocol FetchPodcastSectionsUseCaseProtocol {
+    func execute() async throws -> [PodcastSection]
+    func executeWithPagination(page: Int?) async throws -> (sections: [PodcastSection], pagination: PaginationInfo)
+    func executeSearch(query: String) async throws -> [PodcastSection]
+}
+
+class FetchPodcastSectionsUseCase: FetchPodcastSectionsUseCaseProtocol {
     private let repository: PodcastRepositoryProtocol
 
     init(repository: PodcastRepositoryProtocol = PodcastRepository()) {

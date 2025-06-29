@@ -9,10 +9,10 @@ class PodcastSearchViewModel: ObservableObject {
     @Published private(set) var errorMessage: String?
     @Published var searchText: String = ""
 
-    private let fetchPodcastSectionsUseCase: FetchPodcastSectionsUseCase
+    private let fetchPodcastSectionsUseCase: FetchPodcastSectionsUseCaseProtocol
     private var cancellables = Set<AnyCancellable>()
 
-    init(fetchPodcastSectionsUseCase: FetchPodcastSectionsUseCase = FetchPodcastSectionsUseCase()) {
+    init(fetchPodcastSectionsUseCase: FetchPodcastSectionsUseCaseProtocol = FetchPodcastSectionsUseCase()) {
         self.fetchPodcastSectionsUseCase = fetchPodcastSectionsUseCase
 
         $searchText

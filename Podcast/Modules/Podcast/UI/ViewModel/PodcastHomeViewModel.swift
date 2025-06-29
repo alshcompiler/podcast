@@ -10,9 +10,9 @@ class PodcastHomeViewModel: ObservableObject {
     @Published private var totalPages = 1
     @Published private var hasMorePages = true
 
-    private let fetchPodcastSectionsUseCase: FetchPodcastSectionsUseCase
+    private let fetchPodcastSectionsUseCase: FetchPodcastSectionsUseCaseProtocol
     
-    init(fetchPodcastSectionsUseCase: FetchPodcastSectionsUseCase = FetchPodcastSectionsUseCase()) {
+    init(fetchPodcastSectionsUseCase: FetchPodcastSectionsUseCaseProtocol = FetchPodcastSectionsUseCase()) {
         self.fetchPodcastSectionsUseCase = fetchPodcastSectionsUseCase
     }
     
